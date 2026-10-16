@@ -575,7 +575,8 @@ func (h *CustomWebhookChannelHandler) renderTemplate(n *notification.Notificatio
 		"title":     sanitizeValue(n.Title, 256),
 		"content":   sanitizeValue(n.Content, 4096),
 		"timestamp": n.Timestamp.Format("2006-01-02 15:04:05"),
-		"image":     n.Image,
+		// Webhook 直接使用通知中的图片值，不下载或转换为 Data URI。
+		"image": n.Image,
 	}
 
 	switch format {
